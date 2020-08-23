@@ -1,16 +1,12 @@
 const fs=require('fs')
 const chalk = require('chalk')
-const { title } = require('process')
 
 //add note
-const addNotes=function(title,body)
+const addNotes=(title,body)=>
 {
   const notes=loadNotes()
   //to find the already existing title
-  const duplicateNotes=notes.filter(function(notes)
-  {
-     return notes.title===title
-  })
+  const duplicateNotes=notes.filter((notes)=>{ notes.title===title})
 
   if(duplicateNotes.length===0)
   {
@@ -30,7 +26,7 @@ const addNotes=function(title,body)
 }
 
 //load notes
-const loadNotes=function()
+const loadNotes=() =>
 {
    try
    {
@@ -44,19 +40,17 @@ const loadNotes=function()
    }
 }
 //save notes
-saveNotes=function(notes)
+saveNotes=(notes) =>
 {
    const dataJson=JSON.stringify(notes)
    fs.writeFileSync('notesData.json',dataJson)
 }
 
 //remove notes
-const removeNotes=function(title)
+const removeNotes=(title) =>
 {
    const notes=loadNotes();
-   const notesToKeep=notes.filter(function(notes){
-      return notes.title!==title
-   })
+   const notesToKeep=notes.filter((notes) => {notes.title!==title})
   
    if(notes.length>notesToKeep.length)
    {
@@ -70,12 +64,16 @@ const removeNotes=function(title)
 
 }
 
-const getNotesList=function()
+const getNotesList=() =>
 {
    const notes=loadNotes();
    if(notes.length!==0)
    {
-      console.table(notes)
+      console.log(chalk.inverse('List of nodes :'))
+      notes.forEach((note)=>
+      {
+         console.log(chalk.inverse(note.title))
+      })
    }
    else
    {
@@ -84,14 +82,10 @@ const getNotesList=function()
 }
 
 //read the selected note
-const getReadNote=function(title)
+const getReadNote=(title) =>
 {
    const notes=loadNotes()
-   const readNote=notes.filter(function(notes)
-   {
-      return notes.title===title
-   })
-
+   const readNote=notes.filter((notes) =>{notes.title===title})
     if(readNote.length!==0)
     {
       console.log(readNote)

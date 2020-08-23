@@ -6,9 +6,10 @@ const addNotes=(title,body)=>
 {
   const notes=loadNotes()
   //to find the already existing title
-  const duplicateNotes=notes.filter((notes)=>{ notes.title===title})
+  //const duplicateNotes=notes.filter((notes)=>{ notes.title===title})
+  const duplicateNote=notes.find((notes)=>notes.title===title)
 
-  if(duplicateNotes.length===0)
+  if(!duplicateNote)
   {
      //adding new values to json objects
    notes.push({
@@ -85,10 +86,11 @@ const getNotesList=() =>
 const getReadNote=(title) =>
 {
    const notes=loadNotes()
-   const readNote=notes.filter((notes) =>{notes.title===title})
-    if(readNote.length!==0)
+   const readNote=notes.find((note)=>note.title===title)
+    if(readNote)
     {
-      console.log(readNote)
+     console.log(chalk.inverse(readNote.title));
+     console.log(chalk.inverse(readNote.body));
     }
     else
     {

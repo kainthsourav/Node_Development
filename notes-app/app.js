@@ -1,7 +1,7 @@
 const chalk=require('chalk');
 const validator=require('validator')
 const yargs=require('yargs');
-const { command, string, describe } = require('yargs');
+const notes=require('./notes')
 
 //custom verison
 yargs.version('1.1.0');
@@ -16,18 +16,17 @@ yargs.command({
         title:{
             describe:'Note Title',
            demandoption:true,
-            type:string
+            type:'string'
         },
         body:{
             describe:'Note description',
             demandoption:true,
-            type:string
+            type:'string'
         }
     },
     handler:function(argv)
     {
-        console.log('Title: '+argv.title)
-        console.log('Description: '+argv.description)
+       notes.getAddNotes(argv.title,argv.body)
     }
 })
 //remove

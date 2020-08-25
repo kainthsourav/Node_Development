@@ -1,13 +1,9 @@
+const request=require('postman-request')
 
-console.log('statring')
+const Url='http://api.weatherstack.com/current?access_key=d4a5a65449bdf95330a9d186c2d04dac&query=Jalandhar'
 
-setTimeout(()=>{
-    console.log('wait 2000')
-},2000)
-
-setTimeout(()=>
+request(Url,(error,response)=>
 {
-    console.log('Wait 0')
-},0)
-
-console.log('finised')
+    data=JSON.parse(response.body)
+    console.log(data)
+})

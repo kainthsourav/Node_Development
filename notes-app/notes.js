@@ -82,6 +82,7 @@ const getNotesList=() =>
    }
 }
 
+
 //read the selected note
 const getReadNote=(title) =>
 {

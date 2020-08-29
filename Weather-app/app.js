@@ -9,20 +9,21 @@ if(!address)
 }
 else
 {
-   geoCode(address,(error,response)=>{
+   geoCode(address,(error,{latitude,logitude,location})=>{
     if(error)
     {
       return console.log(error)
     }
-    forcast(response.latitude,response.logitude,(error,forcastdata)=>
+    forcast(latitude,logitude,(error,forcastdata)=>
     {
       if(error)
       {
         return console.log(error)
       }
+      console.log(location)
       console.log(forcastdata)
     })
-    console.log(response.location)
+   
    
   })
 }
